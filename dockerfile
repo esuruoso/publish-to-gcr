@@ -1,11 +1,5 @@
-FROM golang:alpine3.6 AS binary
-ADD . /app
+FROM node:alpine
+COPY . /app
 WORKDIR /app
-RUN go build -o http
+CMD node.js
 
-FROM alpine:3.6
-WORKDIR /app
-ENV PORT 8000
-EXPOSE 8000
-COPY --from=binary /app/http /app
-CMD ["/app/http"]
